@@ -1,8 +1,19 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="navvis">
 
-<!--xacro:include filename="$(find gazebo_plugins)/test/multi_robot_scenario/xacro/laser/hokuyo.xacro" />
-<xacro:laser name="laser_vert_bottom" parent="base" xyz="0.3157894464801903 -0.002068548615034871 0.5099999434959285" rpy="3.1354753 -1.3045001 0.0024658" meshes="package://gazebo_plugins/test/multi_robot_scenario/meshes/laser" !-->
+<xacro:include filename="$(find gazebo_plugins)/test/multi_robot_scenario/xacro/laser/hokuyo.xacro" />
+
+<xacro:include filename="$(find velodyne_description)/urdf/VLP-16.urdf.xacro" />
+
+<xacro:VLP-16 parent="base" name="laser_horiz" topic="laser_horiz/packets" hz="10" samples="440" gpu="false">
+  <origin xyz="0.2325416305773505 -0.001380069427607134 1.920122926231907" rpy="-0.0012068 0.114646 -0.0015308" />
+</xacro:VLP-16>
+
+<xacro:laser name="laser_vert_bottom" parent="base" xyz="0.3157894464801903 -0.002068548615034871 0.5099999434959285" rpy="3.1354753 -1.3045001 0.0024658" meshes="package://gazebo_plugins/test/multi_robot_scenario/meshes/laser" />
+
+<xacro:laser name="laser_vert_top_right" parent="base" xyz="0.2978 -0.1450 1.8451" rpy="-1.1760 0.6313 -1.9377" meshes="package://gazebo_plugins/test/multi_robot_scenario/meshes/laser" />
+
+<xacro:laser name="laser_vert_top_left" parent="base" xyz="0.2997 0.01531 1.8443" rpy="1.1780 0.6198 1.9560" meshes="package://gazebo_plugins/test/multi_robot_scenario/meshes/laser" />
 
   <link name="base">
     <visual>
@@ -21,7 +32,7 @@
     </collision>
   </link>
 
-  <link name="laser_vert_bottom">
+  <!--link name="laser_vert_bottom">
     <visual>
       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
       <geometry>
@@ -64,9 +75,9 @@
         <box size="0.062 0.062 0.087" />
       </geometry>
     </collision>
-  </link>
+  </link!-->
 
-  <link name="laser_horiz">
+  <!--link name="laser_horiz">
     <visual>
        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
       <geometry>
@@ -79,11 +90,9 @@
         <cylinder length="0.052" radius="0.072" />
       </geometry>
     </collision>
-  </link>
+  </link!-->
 
-
-
-  <joint name="base_laser_vert_bottom_joint" type="fixed">
+  <!--joint name="base_laser_vert_bottom_joint" type="fixed">
     <parent link="base" />
     <child link="laser_vert_bottom" />
     <origin xyz="0.3158 -0.0021 0.5100" rpy="3.1355 -1.304 0.0025" />
@@ -99,13 +108,13 @@
     <parent link="base" />
     <child link="laser_vert_top_left" />
     <origin xyz="0.2997 0.01531 1.8443" rpy="1.1780 0.6198 1.9560" />
-  </joint>
+  </joint!-->
 
-  <joint name="base_laser_horiz_joint" type="fixed">
+  <!--joint name="base_laser_horiz_joint" type="fixed">
     <parent link="base" />
     <child link="laser_horiz" />
     <origin xyz="0.2325 0.0001 1.9201" rpy="-0.0012 0.1146 -0.0015" />
-  </joint>
+  </joint!-->
 
 <!-- XACRO Macro definition block to add around the wheel link and joint !-->
 

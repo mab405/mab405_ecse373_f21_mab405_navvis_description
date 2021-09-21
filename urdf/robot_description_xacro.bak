@@ -1,9 +1,5 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="navvis">
-
-<!--xacro:include filename="$(find gazebo_plugins)/test/multi_robot_scenario/xacro/laser/hokuyo.xacro" />
-<xacro:laser name="laser_vert_bottom" parent="base" xyz="0.3157894464801903 -0.002068548615034871 0.5099999434959285" rpy="3.1354753 -1.3045001 0.0024658" meshes="package://gazebo_plugins/test/multi_robot_scenario/meshes/laser" !-->
-
   <link name="base">
     <visual>
       <!-- Shift the box up half its height. !-->
@@ -80,8 +76,6 @@
       </geometry>
     </collision>
   </link>
-
-
 
   <joint name="base_laser_vert_bottom_joint" type="fixed">
     <parent link="base" />
