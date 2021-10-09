@@ -123,13 +123,13 @@
 	    <visual>
 	       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
 	      <geometry>
-		<cylinder length="0.2" radius="0.05" />
+		<cylinder length="0.05" radius="0.2" />
 	      </geometry>
 	    </visual>
 	    <collision>
 	       <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
 	      <geometry>
-		<cylinder length="0.2" radius="0.05" />
+		<cylinder length="0.05" radius="0.2" />
 	      </geometry>
 	    </collision>
 	  </link>
@@ -152,13 +152,13 @@
     <visual>
        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
       <geometry>
-        <cylinder length="0.15" radius="0.05" />
+        <cylinder length="0.05" radius="0.15" />
       </geometry>
     </visual>
     <collision>
        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
       <geometry>
-        <cylinder length="0.15" radius="0.05" />
+        <cylinder length="0.05" radius="0.15" />
       </geometry>
     </collision>
   </link>
@@ -166,7 +166,7 @@
   <joint name="base_center_wheel_joint" type="continuous">
     <parent link="base" />
     <child link="center_wheel" />
-    <origin xyz="-0.10 0.0 0.0" rpy="1.57079632679 0.0 0.0" />
+    <origin xyz="0.10 0.0 0.0" rpy="1.57079632679 0.0 0.0" />
 
     <axis xyz="0 0.0 1.0" />
     <limit effort = "10" velocity = "10" />
