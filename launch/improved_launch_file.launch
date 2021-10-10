@@ -4,7 +4,6 @@
 
   <arg if="$(arg use_xacro)" name="filename" default="robot_description.xacro"/>
   <arg unless="$(arg use_xacro)" name="filename" default="robot_description.urdf" />
-  
 
   <arg name ="file" default="$(find navvis_description)/urdf/$(arg filename)" />
 

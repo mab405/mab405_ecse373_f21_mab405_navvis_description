@@ -1,21 +1,29 @@
 <launch>
+  <arg name="use_xacro" default="false"/> 
+  <arg name="use_gui" default="true" />
+  <arg name="use_robot_state_publisher" default="true" />
+  <!--arg name="external_clock" default="true" -->
 
-  <arg name="use_xacro" default="false" />
-
-  <arg if="$(arg use_xacro)" name="filename" default="robot_description.xacro"/>
+  <arg if="$(arg use_xacro)" name="filename" default="robot_description.xacro" />
   <arg unless="$(arg use_xacro)" name="filename" default="robot_description.urdf" />
 
-  <arg name ="file" default="$(find navvis_description)/urdf/$(arg filename)" />
+  <arg name="file" default="$(find navvis_description)/urdf/$(arg filename)" />
 
   <param if="$(arg use_xacro)" name="robot_description" command="$(find xacro)/xacro.py --inorder $(arg file)" />
   <param unless="$(arg use_xacro)" name="robot_description" textfile="$(arg file)" />
 
-  <arg name="use_robot_state_launcher" default="true" />
+  <!--param if="$(arg external_clock)" name="use_sim_time" value="true" />
+  <param unless="$(arg external_clock)" name="use_sim_time" value="false" -->
 
-  <node if="$(arg use_robot_state_launcher)" pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+  <node if="$(arg use_gui)" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" />
+  <node unless="$(arg use_gui)" pkg="joint_state_publisher" type="joint_state_publisher" name="joint_state_publisher" />
 
-  <node unless="$(arg use_robot_state_launcher)" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" name="joint_state_publisher_gui" />
+  <node if="$(arg use_robot_state_publisher)" pkg="robot_state_publisher" type="robot_state_publisher" name="robot_state_publisher" />
+
+  <node unless="$(arg use_gui)" pkg="tf2_ros" type="static_transform_publisher" name="static_transform_publisher_left" args="-0.10 0.4 0.0 0.0 0.0 -1.57 base wheel_left" />
+  <node unless="$(arg use_gui)" pkg="tf2_ros" type="static_transform_publisher" name="static_transform_publisher_right" args="-0.10 -0.4 0.0 0.0 0.0 -1.57 base wheel_right" />
+  <node unless="$(arg use_gui)" pkg="tf2_ros" type="static_transform_publisher" name="static_transform_publisher_center" args="0.10 0.0 -0.05  0.0 0.0 -1.57 base wheel_center" />
 
   <node pkg="rviz" type="rviz" name="rviz" args="-d $(find navvis_description)/config/config.rviz" required="true" />
-
 </launch>
+
